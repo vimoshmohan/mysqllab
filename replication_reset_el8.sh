@@ -72,7 +72,6 @@ echo "OK"
 fi
 else
 echo "Mysql not installed in master server"
-exit
 fi
 echo "Installing mysql repo in master server:"
 if [[ $(rpm -qa | grep -i mysql80-community-release-el8-5.noarch) == mysql80-community-release-el8-5.noarch ]]; then
