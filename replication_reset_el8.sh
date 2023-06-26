@@ -153,7 +153,7 @@ if [[ $(echo $?) -gt 0 ]]; then
 else
 echo "===================================slave server logs started=============" >> /tmp/replication_reset.log
 #ssh -p $sshport -o StrictHostKeyChecking=no root@$slaveip  "/tmp/replication_slave_reset_el8.sh"
-ssh -p $ssh_port -o StrictHostKeyChecking=no root@$slaveip  "bash <(curl https://raw.githubusercontent.com/vimoshmohan/mysqllab/main/slave_scripts/replication_slave_reset_el8.sh)"
+ssh -p $sshport -o StrictHostKeyChecking=no root@$slaveip  "bash <(curl https://raw.githubusercontent.com/vimoshmohan/mysqllab/main/slave_scripts/replication_slave_reset_el8.sh)"
 if [[ $(echo $?) -gt 0 ]]; then
    echo "Please check issue in slave server"
    exit
