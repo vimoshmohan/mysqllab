@@ -1,5 +1,5 @@
 #!/bin/bash
-slaveip=`cat /etc/slaveip1`
+slaveip=`cat /etc/slaveip`
 masterip=`cat /etc/masterip`
 if [[ $(rpm -qa | grep -i mysql-community-server) == *mysql-community-server-8* ]]; then
    echo "Mysql already Installed, please remove it and retry"
