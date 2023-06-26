@@ -67,7 +67,7 @@ else
 echo "OK"
 fi
 echo " Slave Server Reset started:"
-timeout 5s ssh -oBatchMode=yes -o StrictHostKeyChecking=no root@$slaveip echo  > /dev/null 2>&1
+timeout 5s ssh -p $sshport -oBatchMode=yes -o StrictHostKeyChecking=no root@$slaveip echo  > /dev/null 2>&1
 if [[ $(echo $?) -gt 0 ]]; then
    echo "Root passwordless ssh connectivity to slave server failed"
    exit
