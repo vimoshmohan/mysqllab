@@ -65,7 +65,7 @@ if [[ $(rpm -qa | grep -i mysql-community-server) == *mysql-community-server-8* 
    mv /var/lib/mysql /var/lib/mysql_`date +"%d-%m-%Y-%s"`
    timeout 120s dnf remove mysql-community-server -y >> /tmp/replication_reset.log 2>&1
 if [[ $(echo $?) -gt 0 ]]; then
-   echo "Mysql Installation failed, please check issue"
+   echo "Mysql Uninstallation failed, please check issue"
    exit
 else
 echo "OK"
