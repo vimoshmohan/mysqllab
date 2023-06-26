@@ -67,7 +67,7 @@ else
 echo "OK"
 fi
 echo " Slave Server Reset started:"
-ssh -p $sshport -o StrictHostKeyChecking=no root@$slaveip "uptime" >> /tmp/replication_reset.log 2>&1
+timeout 5s ssh -oBatchMode=yes -o StrictHostKeyChecking=no root@$slaveip echo  > /dev/null 2>&1
 if [[ $(echo $?) -gt 0 ]]; then
    echo "Root passwordless ssh connectivity to slave server failed"
    exit
@@ -80,3 +80,5 @@ if [[ $(echo $?) -gt 0 ]]; then
    exit
 else
 echo "Server reset has been completed Successfully"
+fi
+fi
