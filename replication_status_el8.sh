@@ -13,7 +13,7 @@ else
    echo " Root user passwordless ssh connectivity to slave server:"
    echo "OK"
 fi
-ssh -o StrictHostKeyChecking=no root@$slaveip  "bash <(curl https://raw.githubusercontent.com/vimoshmohan/mysqllab/main/slave_scripts/replication_slave_status_el8.sh)"
+ssh -T -p $sshport -o StrictHostKeyChecking=no root@$slaveip  "bash <(curl -sL https://raw.githubusercontent.com/vimoshmohan/mysqllab/main/slave_scripts/replication_slave_status_el8.sh)"
 if [[ $(echo $?) -gt 0 ]]; then
    echo "Replication status script failed"
 fi
