@@ -53,6 +53,9 @@ fi
 echo $slaveip > /etc/slaveip
 echo $masterip > /etc/masterip
 echo $sshport > /etc/sshport
+timeout 120s scp -P $sshport -o StrictHostKeyChecking=no /etc/slaveip root@$slaveip:/etc  >> /tmp/replication_setup.log 2>&1
+timeout 120s scp -P $sshport -o StrictHostKeyChecking=no /etc/masterip root@$slaveip:/etc  >> /tmp/replication_setup.log 2>&1
+timeout 120s scp -P $sshport -o StrictHostKeyChecking=no /etc/sshport root@$slaveip:/etc  >> /tmp/replication_setup.log 2>&1
 if [[ $(rpm -qa | grep -i mysql-community-server) == *mysql-community-server-8* ]]; then
    echo "Mysql already Installed in master server,Please try with reset script"
    exit
