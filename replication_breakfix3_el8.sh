@@ -14,14 +14,14 @@ else
    echo "OK"
 fi
 firewall-cmd --remove-rich-rule='rule family=ipv4 source address="'$slaveip'" port port="3306" protocol=tcp accept' --permanent >> /tmp/replication_breakfix3.log 2>&1
-   #status1=`echo $?`
-   echo "status1" $status1
+   status1=`echo $?`
+   #echo "status1" $status1
    firewall-cmd --reload >> /tmp/replication_breakfix3.log 2>&1
-   #status2=`echo $?`
-   echo "status2" $status2
+   status2=`echo $?`
+   #echo "status2" $status2
    if [[ $status1 -gt 0 ]] || [[ $status2 -gt 0 ]]
    then
-   echo "Breakfix3 execution failed, please investigate issue"
+   echo "Breakfix3 execution failed, please investigate the issue"
    exit
 else
    ssh -p $sshport -o StrictHostKeyChecking=no $slaveip  "mysql --defaults-extra-file=/root/.my.cnf -e 'stop slave;start slave'" >> /tmp/replication_breakfix3.log 2>&1
