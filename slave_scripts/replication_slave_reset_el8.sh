@@ -21,7 +21,7 @@ if [[ $(rpm -qa | grep -i mysql80-community-release-el8-5.noarch) == mysql80-com
    echo "Mysql repo already installed"
 
 else
-timeout  60s yum install http://dev.mysql.com/get/mysql80-community-release-el8-5.noarch.rpm -y >> /tmp/replication_script.log 2>&1
+timeout  60s yum install http://dev.mysql.com/get/mysql80-community-release-el8-5.noarch.rpm -y >> /tmp/replication_reset.log 2>&1
 if [[ $(echo $?) -gt 0 ]]; then
    echo "Mysql repo installation failed, please check issue"
 else
@@ -29,10 +29,10 @@ echo "OK"
 fi
 fi
 echo "Installing mysql server in slave server:"
-yum install -y mysql-community-server >>  /tmp/replication_script.log 2>&1
+yum install -y mysql-community-server  >> /tmp/replication_reset.log 2>&1
 
 if [[ $(echo $?) -gt 0 ]]; then
-   echo "Mysql Instalaltion failed, please check issue"
+   echo "Mysql Installation failed, please check issue"
    exit 5
 else
 echo "OK"
@@ -75,8 +75,8 @@ if [[ $(echo $?) -gt 0 ]]; then
    exit 5
 else
 echo "Connectivity from slave server to master server:"
-yum install nc
-timeout 30s nc -zv $masterip 3306 >> /tmp/replication_script.log 2>&1
+yum install nc  >> /tmp/replication_reset.log 2>&1
+timeout 30s nc -zv $masterip 3306  >> /tmp/replication_reset.log 2>&1
 if [[ $(echo $?) -gt 0 ]]; then
    echo "Slave to master connectivity failed"
    exit 5
