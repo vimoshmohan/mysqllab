@@ -2,9 +2,9 @@
 slaveip=`cat /etc/slaveip`
 masterip=`cat /etc/masterip`
 sshport=`cat /etc/sshport`
-echo "The master server IP address is:" $masterip
-echo "The slave server IP address is:" $slaveip
-echo "The slave sshport is:" $sshport
+#echo "The master server IP address is:" $masterip
+#echo "The slave server IP address is:" $slaveip
+#echo "The slave sshport is:" $sshport
 timeout 5s ssh -p $sshport -oBatchMode=yes -o StrictHostKeyChecking=no root@$slaveip echo  > /dev/null 2>&1
 if [[ $(echo $?) -gt 0 ]]; then
    echo "Root user passwordless ssh connectivity to slave server failed"
